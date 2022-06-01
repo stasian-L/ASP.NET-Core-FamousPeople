@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-top: 0;
+    
+    font-style: normal;
+    line-height: 1.5;
+}
+
+.col-md-5 {
+    width: 41.66666667%;
+    float: left;
+}
+
+.col-md-7 {
+    width: 58.33333333%;
+    float: left;
+
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*--Side menu*/
+
+.sidebar .tagcloud a {
+    color: #292929;
+    background-color: inherit;
+    border: 1px solid #cf475f;
+    font-family: "Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    padding: 2px 7px;
+    display: inline-block;
+    font-size: 13px !important;
+    margin-bottom: 3px;
+    text-decoration: none;
+}
+
+.cid-raMGzBDSdH {
+    padding-top: 90px;
+    padding-bottom: 90px;
+    background-color: #ffffff;
+    margin: auto;
+}
+
+section {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.display-2 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2.25rem;
+    text-align: right;
+}
+
+.display-7 {
+    font-size: 1.3rem;
+    text-align: right;
+}
+
+/*--About--*/
+
+.masthead {
+    padding-top: calc(6rem + 74px);
+    padding-bottom: 6rem;
+}
+
+.masthead-heading {
+    font-size: 2.75rem;
+    line-height: 2.75rem;
+}
+
+.masthead-subheading {
+    font-size: 1.25rem;
+}
+
+.masthead-avatar {
+    width: 15rem;
+}
+
+
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+}
+
+
+.header-masthead {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    background: url(../images/backimg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.75) !important;
+}

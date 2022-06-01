@@ -1,0 +1,161 @@
+﻿@model FamousPeople.ViewModels.PersonViewModel
+
+@{
+    var title = "Добавить человека";
+
+    ViewData["Title"] = "Upsert";
+}
+
+@*@if (User.IsInRole(UserRoles.Admin))
+{
+    @Model.Person.IsApproved = true;
+}
+@else
+{
+    @Model.Person.IsApproved = false;
+}*@
+
+<form method="post" enctype="multipart/form-data">
+    @if (Model.Person.Id != 0)
+    {
+        title = "Редактировать";
+        <input asp-for="Person.Id" hidden />
+    }
+    <div class="border p-3 bg-white">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">@title </h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Person.FullName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Person.FullName" class="form-control" />
+                        <span asp-validation-for="Person.FullName" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Person.Bio"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Person.Bio" class="form-control"></textarea>
+                        <span asp-validation-for="Person.Bio" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Person.DetailedBio"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Person.DetailedBio" class="form-control"></textarea>
+                        <span asp-validation-for="Person.DetailedBio" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Person.BirthDate"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Person.BirthDate" type="text" class="datepicker" />
+                        <span asp-validation-for="Person.BirthDate" class="text-danger"></span>
+@*                        <input class="form-control" type="date" id="BirthDate" name="BirthDate" value="2000-01-01" asp-for="Person.BirthDate"/>
+*@                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Person.ProfilePictureURL"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" multiply class="form-control bi bi-file-image" />
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Person.CategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Person.CategoryId" asp-items="@Model.CategorySelectList" class="form-select">
+                            <option disabled selected>--Выберите категорию--</option>
+                        </select>
+                        <span asp-validation-for="Person.CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                @if(User.IsInRole(UserRoles.Admin))
+                {
+                    <div class="form-group row">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-8 mb-3">
+                        <div class="checkbox checkbox-primary">
+                            @Html.CheckBoxFor(model => model.Person.IsApproved)
+                            @Html.LabelFor(model => model.Person.IsApproved)
+                        </div>
+                    </div>
+                </div>
+                }
+
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            @if (Model.Person.Id != 0)
+                            {
+                //update
+                                <input type="submit" class="btn btn-info w-100" value="Обновить" />
+                            }
+                            else
+                            {
+                //create
+                                <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Добавить" />
+
+                            }
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="fa-solid fa-arrow-right-from-bracket"></i>Назад</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @*Keep this empty*@
+                @if (Model.Person.Id != 0)
+                {
+                    <img src="\images\@Model.Person.ProfilePictureURL" width="100%" style="border-radius:5px; border:1px solid #bbb" />
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy'
+    });
+</script>
+    <script>
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire
+                    (
+                        'Error',
+                        'Please upload an image',
+                        'error'
+                    )
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

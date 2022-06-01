@@ -1,0 +1,97 @@
+﻿@model FamousPeople.Models.Person
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@*<div>
+    <h2>@Model.FullName</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+        </dt>
+        <dd class="col-sm-10">
+            <img src="\images\@Model.ProfilePictureURL" alt="" title="" />
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Bio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DetailedBio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        @if (User.IsInRole(UserRoles.Admin))
+        {
+            @if (Model.IsApproved == true)
+            {
+                <p>Одобрено</p>
+            }
+            else
+            {
+                <p>Не одобрено</p>
+            }
+        }
+    </dl>
+</div>*@
+
+
+<div class="col-lg-10">
+    <div class="col-md-5 mb-5">
+        <div class="bio-photos-div text-center">
+            <div>
+                <img src="\images\@Model.ProfilePictureURL" alt="@Html.DisplayFor(model => model.FullName)" title="" style="width:300px;height:336px;padding:0;" class="img-thumbnail bio-photo-thumb" />
+            </div>
+        </div>
+        <div class="bio-info-block" style="margin-left: 80px;">
+            <div>
+                <h3 class="bio-info-headline headline-medium">
+                    Факты о персоне<br />
+                    @Html.DisplayFor(model => model.FullName)
+                </h3>
+            </div>
+            <div class="mb-5">
+                <div class="bio-info-div">
+                    <span class="bio-info-label"><strong>Дата рождения:</strong><br /> </span>
+                    <span class="bio-fact">@Html.DisplayFor(model => model.BirthDate)</span>
+                </div>
+                <div class="bio-info-div">
+                    <strong>Сфера:</strong><br />
+                    @Html.DisplayFor(model => model.Category.CategoryName)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <h1>@Html.DisplayFor(model => model.FullName),<br /> биография</h1>
+        <div>
+            @Html.DisplayFor(model => model.DetailedBio)
+        </div>
+
+        <div class="m-5">
+            @if (User.IsInRole(UserRoles.Admin))
+            {
+                <a asp-action="Upsert" asp-route-id="@Model?.Id">Редактировать</a>
+
+                <div class="vr"></div>
+                <a asp-action="Delete" asp-route-id="@Model?.Id">Удалить</a>
+
+                <div class="vr"></div>
+                <a asp-action="Index">Вернуться к списку</a>
+            }
+            else
+            {
+                <a asp-action="Index">Вернуться к списку</a>
+            }
+        </div>
+    </div>
+
+</div>
+
+

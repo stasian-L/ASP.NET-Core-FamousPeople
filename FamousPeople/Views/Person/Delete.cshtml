@@ -1,0 +1,75 @@
+﻿@model FamousPeople.Models.Person
+
+@{
+    var title = "Удаление человека";
+
+    ViewData["Title"] = "Delete";
+}
+
+
+<form method="post" asp-action="Delete">
+
+    <input asp-for="Id" hidden />
+    <div class="border p-3 bg-white">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">@title </h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="FullName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="FullName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Bio"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Bio" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="DetailedBio"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="DetailedBio" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="CategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Category.CategoryName" disabled class="form-control" />
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-danger w-100" value="Удалить" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="fa-solid fa-arrow-right-from-bracket"></i>Назад</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    @*Keep this empty*@
+
+                    @if (Model.Id != 0)
+                    {
+                        <img src="\images\@Model.ProfilePictureURL" width="100%" style="border-radius:5px; border:1px solid #bbb" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
