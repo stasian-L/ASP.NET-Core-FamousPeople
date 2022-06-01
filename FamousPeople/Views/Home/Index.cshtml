@@ -4,7 +4,15 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="row">
+    <div class="">
+        <strong>
+            <p>Беларусь славится выдающимися людьми, которые оставили след не только в истории своего государства, но известны далеко за пределами своей Родины.</p>
+            <p>Познакомьтесь с самыми известными белорусами, которые внесли вклад в Мировую историю.</p>
+        </strong>
+    </div>
+
     <div class="col-sm-8">
 
         <div class="container z-depth-1 my-5 p-5">
@@ -41,7 +49,7 @@
         <h3>Список доступных категорий</h3>
         <hr class="w-header my-4">
 
-        <div class="">
+        <div class="mb-5">
             <div class="tagcloud">
                 @foreach (var category in Model.Categories)
                 {
@@ -49,6 +57,12 @@
                    asp-action="FilterByCat" asp-route-id="@category?.Id">@category.CategoryName</a>
                 }
             </div>
+        </div>
+        <h3>Сегодня день рождения</h3>
+        <hr class="w-header my-4">
+        <div>
+            <a asp-controller="Person" asp-action="FilterByDate" name="date" class="btn btn-info">Узнать</a>
+
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@ namespace FamousPeople.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            IEnumerable<Person> objList = _db.People.OrderBy(x=>x.FullName);
+            IEnumerable<Person> objList = _db.People.OrderBy(x => x.FullName);
 
             return View(objList);
         }
@@ -65,16 +65,14 @@ namespace FamousPeople.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult FilterByDate(DateTime date)
+        public IActionResult FilterByDate()
         {
             var allPeople = _db.People;
 
-            if (date != null)
-            {
-                var filteredResult = allPeople.Where(n => n.BirthDate == date).ToList();
+            var filteredResult = allPeople.Where(n => n.BirthDate.Date == DateTime.Now.Date).ToList();
 
+            if (filteredResult.Count > 0)
                 return View("Index", filteredResult);
-            }
 
             return View("Index", allPeople);
         }
@@ -105,7 +103,7 @@ namespace FamousPeople.Controllers
             PersonViewModel productVM = new PersonViewModel()
             {
                 Person = new Person(),
-                CategorySelectList = _db.Categories.Select(u=>new SelectListItem
+                CategorySelectList = _db.Categories.Select(u => new SelectListItem
                 {
                     Text = u.CategoryName,
                     Value = u.Id.ToString()
@@ -198,7 +196,7 @@ namespace FamousPeople.Controllers
                 Value = u.Id.ToString()
             });
 
-           // TempData[WC.Error] = "Error";
+            // TempData[WC.Error] = "Error";
             return View(personVM);
         }
 
