@@ -71,10 +71,7 @@ namespace FamousPeople.Controllers
 
             var filteredResult = allPeople.Where(n => n.BirthDate.Date == DateTime.Now.Date).ToList();
 
-            if (filteredResult.Count > 0)
-                return View("Index", filteredResult);
-
-            return View("Index", allPeople);
+            return View("Index", filteredResult);
         }
 
         //GET: Movies/Details/1

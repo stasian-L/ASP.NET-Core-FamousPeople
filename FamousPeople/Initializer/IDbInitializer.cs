@@ -1,4 +1,4 @@
-﻿namespace FamousPeople.Initializer
+﻿namespace FamousPeople.Data.Initializer
 {
     public interface IDbInitializer
     {

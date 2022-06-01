@@ -1,5 +1,5 @@
 using FamousPeople.Data;
-using FamousPeople.Initializer;
+using FamousPeople.Data.Initializer;
 using FamousPeople.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

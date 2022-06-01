@@ -3,7 +3,7 @@ using FamousPeople.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace FamousPeople.Initializer
+namespace FamousPeople.Data.Initializer
 {
     public class DbInitializer : IDbInitializer
     {
